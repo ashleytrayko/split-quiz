@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class day2 {
+public class SplitMethodSecond {
     static int currentI =0;
     public String sum(int index , String str, String[] arr,String basic){
         String madeStr = str;
@@ -30,7 +30,7 @@ public class day2 {
         Scanner sc = new Scanner(System.in);
         String txt = sc.nextLine();
         String arrays[] = txt.split(",");
-        day2 d = new day2();
+        SplitMethodSecond d = new SplitMethodSecond();
         List<String> list = new ArrayList<>();
         for(int i = 0 ; i<arrays.length;i++){
             String str = arrays[i];
@@ -55,5 +55,8 @@ public class day2 {
         }
         System.out.println(list.size() + "개");
         System.out.println(list);
+
+        //----------------------------------------------------------------------
+
     }
 }

@@ -1,11 +1,6 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,7 +10,7 @@ public class Main {
 
         // Split(정규표현식)사용
 
-        SplitMethod split = new SplitMethod();
+        SplitMethodFirst split = new SplitMethodFirst();
         while(flag){
             String input = sc.nextLine();
             if(input.equals("kill")){

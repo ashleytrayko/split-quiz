@@ -13,40 +13,45 @@ public class SplitAlgorithm {
         Scanner sc = new Scanner(System.in);
         String txt = "";
         while(!txt.equals("kill")){
-            txt = sc.nextLine();
-//        String txt = "aaaa,bbbb,\"cc,c\"c\",dd\"ee,f,gg,,ijk,\"l,m\",n";
-            String arrays[] = txt.split(",");
             List<String> lists = new ArrayList<>();
-            for(int i = 0; i < arrays.length; i++){
-                if(!arrays[i].startsWith("\"")){
-                    lists.add(arrays[i]);
-                } else if (arrays[i] == "") {
-                    lists.add(arrays[i]);
-                } else{
-                    String oddString = arrays[i];
-                    for(int j = i + 1; j < arrays.length; j++){
-                        if(!arrays[j].endsWith("\"")){
-                            if(j != arrays.length - 1){
-                                oddString = oddString + "," + arrays[j];
-                            }else {
-                                oddString = oddString + "," + arrays[j];
-                                lists.add(oddString);
-                                i = j;
-                                break;
-                            }
-                        }else{
-                            oddString = oddString + "," + arrays[j];
-                            lists.add(oddString);
-                            i = j;
-                            break;
-                        }
+            txt = sc.nextLine();
+            if(txt.equals("kill")){
+                break;
+            }
+//          txt = "aaaa,bbbb,\"cc,c\"c\",dd\"ee,f,gg,,ijk,\"l,m\",n";
+            int endPoint = 0;
+            boolean flag = true;
+            while (flag){
+                if(txt.startsWith(" ")){                                    // 공백제거
+                    txt = txt.substring(1,txt.length());
+                }
+                if(!txt.startsWith("\"")){                                  // "로 시작하지 않는 단어
+                    endPoint = txt.indexOf(",");                            // ,의 인덱스 번호 반환
+                    if(endPoint != -1){                                     // ,를 찾으면
+                        lists.add(txt.substring(0, endPoint));              // 잘라내어 리스트에 추가
+                        txt = txt.substring(endPoint + 1,txt.length());     // 입력단어 잘라내기
+                    }else{                                                  // ,를 못 찾으면
+                        lists.add(txt.substring(0, txt.length()));          // 마지막이므로 리스트에 추가
+                        flag = false;                                       // while 종료
+                    }
+                }else{                                                      // "로 시작하는 단어
+                    endPoint = txt.indexOf("\",");                          // ",의 인덱스 번호 반환 
+                    if(endPoint != -1){                                     // ",를 찾으면
+                        lists.add(txt.substring(0, endPoint + 1));          // 잘라내어 리스트에 추가
+                        txt = txt.substring(endPoint + 2,txt.length());     // 입력단어 잘라내기
+                    }else{                                                  // ", 를 못찾으면
+                        lists.add(txt.substring(0, txt.length()));          // 마지막으로 리스트에 추가
+                        flag = false;                                       // while 종료
                     }
                 }
             }
             System.out.println(lists.size() + "개");
-            for(String list : lists){
+            System.out.println(lists);
+            for (String list : lists){
                 System.out.println(list);
             }
         }
     }
+
+
 }

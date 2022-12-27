@@ -10,17 +10,16 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SplitMethod {
+public class SplitMethodFirst {
     public String[] splitMethod1 (String input){
         // ("가 앞에 존재한다면 false),("가 뒤에 존재한다면 false)
 //        String answer[] = input.split("(?<!\\\"\\w),(?!\\w\\\")");
 
         // ""가 없거나 복수인 ,를 찾아 자르기
         String answer[] = input.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
-//        String answer[] = input.split("(?!\B(\"|“|”)[^(\"|“|”)]*),(?![^(\"|“|”)]*(\"|“|”)\B)");
+//        String answer[] = input.split("(?:(?<=^)|(?<=,))(?:(?!$)\\s)*\\\"?((?<=\\\").*?(?=\\\")|((?!,)\\S)*)\\\"(?:(?!$)\\s)*(?=$|,)");
         return answer;
     }
 
